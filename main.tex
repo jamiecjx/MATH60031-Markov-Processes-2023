@@ -35,6 +35,7 @@ Autumn 2023\\
 \newcommand{\pr}{\mathbb{P}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\dm}{\mathrm{d}}
+\newcommand{\borelx}{\mc{B}(\mc{X})}
 
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\pspace}{(\Omega, \mathcal{F}, \mathbb{P})}
@@ -49,6 +50,38 @@ Autumn 2023\\
 \maketitle
 
 
-\section{123}
+\section{Basics}
+\begin{definition}
+    A probability space is a triple $\pspace$ consisting of a state space $\Omega$, a $\sigma$-algebra $\mc{F}$ and a probability measure $\pr$.
+    A state space $\mc{X}$ is assumed to be a complete seperable metric space. Let $\borelx$ be the Borel $\sigma$-algebra.
+\end{definition}
 
+\begin{definition}
+    Given the above setup, a Stochastic Process is a collection of random variables/measurable functions from $(\Omega,\mc{F})$ to $(\mc{X}, \borelx)$. The indexing of the random variables is a totally ordered set usually.
+\end{definition}
+
+\subsection{Information and Filtrations}
+\begin{definition}
+    The information on the stochastic process at time $n$ is the $\sigma$-algebra of all possible events at this time.
+
+    \begin{equation}
+        \sigma(X_n) = \sigma
+        \left(
+            \left\{
+                X_n^{-1}(A): A\in\borelx
+            \right\}
+        \right)
+    \end{equation}
+    This can be thought of as all the information we can find about $\Omega$ given $X_n$. Think about what would happen if $X_n$ was constant: the $\sigma$ algebra is trivial and you have no information about it.
+\end{definition}
+\begin{definition}
+    $\sigma(X_0, X_1, \ldots ,X_n)$ is the smallest $\sigma$-algebra such that each random variable is measurable. This can be thought of as the information up to time $n$.
+\end{definition}
+\begin{definition}
+    A family of $\sigma$-algebras $\left\{\mc{F}_n\right\}$ satisfying $\mc{F}_n \subset \mc{F}_m$ whenever $n<m$ is a filtration. This makes sure that we can't see extra information in the future when we haven't reached it yet.
+    \begin{itemize}
+        \item A stochastic process $X_n$ is said to be adapted to a filtration $\mc{F}_n$ if for all $n$, $X_n$ is measurable with respect to $\mc{F}_n$.
+        \item The filtration $\mc{F}_n^X =  \sigma(X_0, X_1, \ldots ,X_n)$ is the smallest filtration, and is called the natural filtration.
+    \end{itemize}
+\end{definition}
 \end{document}
